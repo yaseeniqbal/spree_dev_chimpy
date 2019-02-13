@@ -34,7 +34,7 @@ module Spree::Chimpy
     end
 
     def subscribing?
-      @model.subscribed && (@model.subscribed_changed? || @model.id_changed? || @model.new_record?)
+      @model.subscribed && (@model.saved_change_to_subscribed? || @model.saved_change_to_id? || @model.new_record?)
     end
 
     def unsubscribing?
