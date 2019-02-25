@@ -4,6 +4,10 @@ require 'spree/chimpy/subscription'
 require 'spree/chimpy/workers/delayed_job'
 require 'spree/chimpy/interface/orders'
 require 'spree/chimpy/interface/order_upserter'
+require 'spree/chimpy/interface/customer_upserter'
+require 'spree/chimpy/interface/list'
+require 'spree/chimpy/interface/products'
+
 require 'gibbon'
 require 'coffee_script'
 
