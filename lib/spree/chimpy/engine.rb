@@ -5,6 +5,8 @@ module Spree::Chimpy
     engine_name 'spree_chimpy'
 
     config.autoload_paths += %W(#{config.root}/lib)
+    config.autoload_paths += %W(#{config.root}/lib/interface)
+    config.autoload_paths += %W(#{config.root}/lib/workers)
 
     initializer "spree_chimpy.environment", before: :load_config_initializers do |app|
       Spree::Chimpy::Config = Spree::Chimpy::Configuration.new
