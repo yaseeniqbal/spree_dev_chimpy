@@ -7,7 +7,7 @@ module Spree::Chimpy
       end
 
       def add(order)
-        OrderUpserter.new(order).upsert
+        ::Spree::Chimpy::Interface::OrderUpserter.new(order).upsert
       end
 
       def remove(order)
