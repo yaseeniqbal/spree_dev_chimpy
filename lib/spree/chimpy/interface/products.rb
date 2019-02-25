@@ -58,7 +58,7 @@ module Spree::Chimpy
       end
 
       def product_hash
-        root_taxon = Spree::Taxon.where(parent_id: nil).take
+        root_taxon = ::Spree::Taxon.where(parent_id: nil).take
         taxon = @product.taxons.map(&:self_and_ancestors).flatten.uniq.detect { |t| t.parent == root_taxon }
 
         # assign a default taxon if the product is not associated with a category
