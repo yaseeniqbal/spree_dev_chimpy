@@ -2,6 +2,7 @@ require 'spree_core'
 require 'spree/chimpy/engine'
 require 'spree/chimpy/subscription'
 require 'spree/chimpy/workers/delayed_job'
+require 'spree/chimpy/interface/orders'
 require 'gibbon'
 require 'coffee_script'
 
