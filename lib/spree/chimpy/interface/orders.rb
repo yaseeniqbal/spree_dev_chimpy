@@ -1,4 +1,4 @@
-require 'order_upserter'
+
 
 module Spree::Chimpy
   module Interface
