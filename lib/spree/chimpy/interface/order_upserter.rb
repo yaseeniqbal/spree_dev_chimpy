@@ -8,7 +8,7 @@ module Spree::Chimpy
       end
 
       def customer_id
-        @customer_id ||= CustomerUpserter.new(@order).ensure_customer
+        @customer_id ||= ::Spree::Chimpy::Interface::CustomerUpserter.new(@order).ensure_customer
       end
 
       def upsert
