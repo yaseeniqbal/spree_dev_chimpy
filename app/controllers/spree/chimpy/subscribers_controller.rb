@@ -3,11 +3,7 @@ class Spree::Chimpy::SubscribersController < ApplicationController
 
   def create
     @subscriber = Spree::Chimpy::Subscriber.where(email: subscriber_params[:email]).first_or_initialize
-
-    @subscriber.first_name = subscriber_params[:first_name]
-    @subscriber.last_name = subscriber_params[:last_name]
-    @subscriber.email = subscriber_params[:email]
-    @subscriber.subscribed = subscriber_params[:subscribed]
+    @subscriber.attributes = subscriber_params
 
     is_subscribed = Spree::Chimpy::Subscriber.subscriber_exist?(@subscriber.email)
     if @subscriber.save && is_subscribed
