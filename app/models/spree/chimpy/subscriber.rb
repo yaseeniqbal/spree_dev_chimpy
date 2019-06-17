@@ -12,7 +12,17 @@ class Spree::Chimpy::Subscriber < ActiveRecord::Base
 
   delegate :subscribe, :resubscribe, :unsubscribe, to: :subscription
 
+  def self.subscriber_exist?(subscriber_email)
+    user = Spree::Chimpy::Subscriber.find_by(email: subscriber_email, subscribed: 'true')
+    if user.present?
+      false
+    else
+      true
+    end
+  end
+
 private
+
   def subscription
     Spree::Chimpy::Subscription.new(self)
   end
