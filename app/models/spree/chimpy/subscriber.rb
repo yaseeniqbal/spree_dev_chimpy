@@ -13,11 +13,16 @@ class Spree::Chimpy::Subscriber < ActiveRecord::Base
   delegate :subscribe, :resubscribe, :unsubscribe, to: :subscription
 
   def self.subscriber_exist?(subscriber_email)
-    user = Spree::Chimpy::Subscriber.find_by(email: subscriber_email, subscribed: 'true')
-    if user.present?
-      false
-    else
-      true
+      list_id = '10ae487176'
+      gibbon = Gibbon::Request.new(api_key: Rails.application.credentials.dig(Rails.env.to_sym, :chimpy_key), symbolize_keys: true)
+      member_id = Digest::MD5.hexdigest(subscriber_email)
+      debugger
+    begin
+      member_info = gibbon.lists(list_id).members(member_id).retrieve
+      return member_info[:status]
+    rescue Gibbon::MailChimpError => e
+     message_body = JSON(e.raw_body)
+     return  message_body["status"]
     end
   end
 

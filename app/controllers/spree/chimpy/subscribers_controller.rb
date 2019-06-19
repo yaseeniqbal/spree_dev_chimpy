@@ -6,14 +6,17 @@ class Spree::Chimpy::SubscribersController < ApplicationController
     @subscriber.attributes = subscriber_params
 
     is_subscribed = Spree::Chimpy::Subscriber.subscriber_exist?(@subscriber.email)
-    if @subscriber.save && is_subscribed
+    if @subscriber.save && is_subscribed == 404
       flash[:notice] = Spree.t(:success, scope: [:chimpy, :subscriber])
     else
-      error_message = !is_subscribed ? "Your email address is already subscribed" : Spree.t(:failure, scope: [:chimpy, :subscriber])
-      flash[:error] = error_message
+      if is_subscribed == "subscribed"
+        flash[:info] = "Your email address is already subscribed"
+      else
+        flash[:error] = Spree.t(:failure, scope: [:chimpy, :subscriber])
+      end
     end
-    referer = request.referer || root_url # Referer is optional in request.
-    respond_with @subscriber, location: referer
+      referer = request.referer || root_url # Referer is optional in request.
+      respond_with @subscriber, location: referer
   end
 
   private
