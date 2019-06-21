@@ -16,7 +16,6 @@ class Spree::Chimpy::Subscriber < ActiveRecord::Base
       list_id = Rails.application.credentials.dig(Rails.env.to_sym, :chimpy_user_list_id)
       gibbon = Gibbon::Request.new(api_key: Rails.application.credentials.dig(Rails.env.to_sym, :chimpy_key), symbolize_keys: true)
       member_id = Digest::MD5.hexdigest(subscriber_email)
-      debugger
     begin
       member_info = gibbon.lists(list_id).members(member_id).retrieve
       return member_info[:status]
