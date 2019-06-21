@@ -13,7 +13,7 @@ class Spree::Chimpy::Subscriber < ActiveRecord::Base
   delegate :subscribe, :resubscribe, :unsubscribe, to: :subscription
 
   def self.subscriber_exist?(subscriber_email)
-      list_id = '10ae487176'
+      list_id = Rails.application.credentials.dig(Rails.env.to_sym, :chimpy_user_list_id)
       gibbon = Gibbon::Request.new(api_key: Rails.application.credentials.dig(Rails.env.to_sym, :chimpy_key), symbolize_keys: true)
       member_id = Digest::MD5.hexdigest(subscriber_email)
       debugger
