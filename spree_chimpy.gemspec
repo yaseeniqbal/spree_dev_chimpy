@@ -1,7 +1,7 @@
 # encoding: UTF-8
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
-  s.name        = 'spree_chimpy'
+  s.name        = 'spree_dev_chimpy'
   s.version     = '2.0.0.alpha'
   s.summary     = 'MailChimp/Spree integration using the mailchimp gem'
   s.description = s.summary
